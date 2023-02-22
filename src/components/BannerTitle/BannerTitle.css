@@ -1,0 +1,42 @@
+.pink-color {
+  color: #ff00e9;
+}
+
+.black-color {
+  color: black;
+}
+
+.page-title-wrapper {
+  margin-bottom: 30px;
+}
+
+.bg-image {
+  display: flex;
+  column-gap: 10px;
+  text-decoration: none;
+  font-size: 30px;
+  padding: 30px;
+  background-image: url(../../images/banner.jpg);
+  background-repeat: no-repeat;
+  background-size: 40%;
+  background-position: 90% 70%;
+  background-color: white;
+}
+
+@media screen and (max-width: 749px) {
+  .bg-image {
+    flex-direction: column;
+    background-size: 70%;
+    background-position: 120% 100%;
+  }
+}
+
+@media screen and (max-width: 399px) {
+  .bg-image {
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding-bottom: 150px;
+    background-size: 350px;
+    background-position: 40% 100%;
+  }
+}

@@ -1,0 +1,27 @@
+.programs-filter-form {
+  background-color: white;
+  padding: 45px 40px 40px;
+  position: sticky;
+  top: 30px;
+}
+
+.form-control:not(.checkbox) {
+  display: flex;
+  flex-direction: column;
+}
+
+.programs-filter-form button {
+  width: 100%;
+  display: block;
+}
+
+@media screen and (max-width: 599px) {
+  .container {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+
+  .programs-filter-form {
+    padding: 35px 20px 30px;
+  }
+}
