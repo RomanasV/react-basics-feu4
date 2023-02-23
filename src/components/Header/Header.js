@@ -1,4 +1,5 @@
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
   return (
@@ -6,16 +7,22 @@ export default function Header() {
       <div className="container">
         <div className="header-wrapper">
           <div className="image-wrapper">
-            <img className="logo" src="https://codeacademy.lt/wp-content/themes/codeacademy/dist/images/codeacademy-black.svg" alt="CodeAcademy logo" />
+            <Link to="/">
+              <img className="logo" src="https://codeacademy.lt/wp-content/themes/codeacademy/dist/images/codeacademy-black.svg" alt="CodeAcademy logo" />
+            </Link>
           </div>
       
           <nav className="main-navigation">
             <ul className="main-menu">
               <li className="menu-item"><a className="menu-link" href="#">Studentams</a></li>
               <li className="menu-item"><a className="menu-link" href="#">Verslui</a></li>
-              <li className="menu-item"><a className="menu-link" href="#">Programos</a></li>
+              <li className="menu-item">
+                <Link className="menu-link" to="/programs">Programos</Link>
+              </li>
               <li className="menu-item"><a className="menu-link" href="#">Apie mus</a></li>
-              <li className="menu-item"><a className="menu-link" href="#">Naujienos</a></li>
+              <li className="menu-item">
+                <Link className="menu-link" to="/news">Naujienos</Link>
+              </li>
               <li className="menu-item"><a className="menu-link" href="#">IT testaas</a></li>
               <li className="menu-item"><a className="menu-link" href="#">Kontaktai</a></li>
               <li className="menu-item"><a className="menu-link" href="#">EN</a></li>
