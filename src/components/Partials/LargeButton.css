@@ -1,0 +1,17 @@
+a.button {
+  text-decoration: none;
+  text-transform: uppercase;
+  background-color: #1200ff;
+  color: white;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 13px 30px;
+  border-radius: 50px;
+  display: inline-block;
+  text-align: center;
+}
+
+a.button:hover {
+  background-color: #574aff;
+}
