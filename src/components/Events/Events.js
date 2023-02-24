@@ -1,5 +1,7 @@
 import ArrowIcon from '../ArrowIcon';
 import LargeButton from '../Partials/LargeButton';
+import SectionTitle from '../Partials/SectionTitle';
+import EventItem from './EventItem';
 
 export default function Events() {
   const eventsData = [
@@ -20,37 +22,22 @@ export default function Events() {
     },
     {
       day: null,
-      month: 'spa',
+      month: '',
       location: '',
       title: '3 CodeAcademy Talents',
       url: './#'
     },
   ];
 
+  const eventElements = eventsData.map((event, index) => <EventItem event={event} key={index} /> );
+
   return (
     <div className="events">
-      <h2 className="section-title">Renginiai</h2>
+      <SectionTitle text="Renginiai" />
 
       <div className="events-wrapper">
-        {eventsData.map((event, index) => (
-          <div key={index} className="event">
-            <a href={event.url}>
-              <div className="image-wrapper">
-                {event.image && <img src={event.image} alt={event.title} />}
-              </div>
-              <div className="event-info">
-                <div className="date">
-                  {event.day && <div className="day">{event.day}</div>}
-                  <div className="month">{event.month}</div>
-                </div>
-
-                {event.location && <span className="event-location">{event.location}</span>}
-                <h3 className="event-title">{event.title}</h3>
-              </div>
-            </a>
-          </div>
-        ))}
-
+        {/* {eventsData.map((event, index) => <EventItem event={event} key={index} /> )} */}
+        {eventElements}
       </div>
 
       <LargeButton text="Daugiau" url="https://www.google.com" />
