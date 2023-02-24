@@ -1,7 +1,8 @@
-import MainPage from './components/MainPage/MainPage';
-import ProgramsPage from './components/ProgramsPage/ProgramsPage';
-import NewsPage from './components/NewsPage/NewsPage';
+import MainPage from './pages/MainPage/MainPage';
+import ProgramsPage from './pages/ProgramsPage/ProgramsPage';
+import NewsPage from './pages/NewsPage/NewsPage';
 import { Route, Routes, Link } from 'react-router-dom';
+import './App.css';
 
 function App() {
   return (

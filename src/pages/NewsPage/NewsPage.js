@@ -1,16 +1,17 @@
 import './NewsPage.css';
-import News from '../News/News';
-import Video from '../Video/Video';
-import PodcastsList from '../PodcastsList/PodcastsList';
-import Events from '../Events/Events';
-import Header from '../Header/Header';
-import Footer from '../Footer/Footer';
+import News from '../../components/News/News';
+import Video from '../../components/Video/Video';
+import PodcastsList from '../../components/PodcastsList/PodcastsList';
+import Events from '../../components/Events/Events';
+import Header from '../../components/Header/Header';
+import Footer from '../../components/Footer/Footer';
+import Container from '../../components/Container/Container';
 
 function NewsPage() {
   return (
     <>
       <Header />
-      <div className="container">
+      <Container>
         <div className="content-wrapper">
           <main className="main-content">
             <h1 className="page-title">Naujienos</h1>
@@ -23,7 +24,7 @@ function NewsPage() {
             <Events />
           </aside>
         </div>
-      </div>
+      </Container>
       <Footer />
     </>
   )
