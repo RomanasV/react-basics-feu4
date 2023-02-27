@@ -6,10 +6,10 @@ import Events from '../../components/Events/Events';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Container from '../../components/Container/Container';
-import { eventsData, podcastsData } from '../../projectData';
+import { eventsData, podcastsData, newsPageTitle, newsData } from '../../projectData';
 
 function NewsPage() {
-  const pageTitle = 'Naujienos';
+  const pageTitle = newsPageTitle;
 
   let sidebar;
 
@@ -29,7 +29,7 @@ function NewsPage() {
         <div className="content-wrapper">
           <main className="main-content">
             <h1 className="page-title">{pageTitle}</h1>
-            <News />
+            <News newsData={newsData} />
             <Video />
           </main>
 

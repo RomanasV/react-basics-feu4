@@ -1,8 +1,7 @@
 import NewsArticle from '../NewsArticle/NewsArticle';
 import LargeButton from '../Partials/LargeButton';
-import { newsData } from '../../projectData';
 
-function News() {
+function News({ newsData }) {
   if (newsData.mainNews.length === 0 && newsData.secondaryNews.length === 0) {
     return;
   }
