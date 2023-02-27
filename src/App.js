@@ -3,6 +3,7 @@ import ProgramsPage from './pages/ProgramsPage/ProgramsPage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import { Route, Routes, Link } from 'react-router-dom';
 import './App.css';
+import CounterPage from './pages/CounterPage/CounterPage';
 
 function App() {
   return (
@@ -16,11 +17,15 @@ function App() {
             <li>
               <Link to='/other-projects/contacts'>Contacts Project</Link>
             </li>
+            <li>
+              <Link to='/other-projects/counter'>Counter</Link>
+            </li>
           </ul>
         } />
         <Route path='/codeacademy' element={<MainPage />} />
         <Route path='/codeacademy/news' element={<NewsPage />} />
         <Route path='/codeacademy/programs' element={<ProgramsPage />} />
+        <Route path='/other-projects/counter' element={<CounterPage />} />
         <Route path='/other-projects/contacts' element={<h1>Contacts</h1>} />
         <Route path='*' element={
           <div>
