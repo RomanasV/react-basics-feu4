@@ -1,4 +1,5 @@
 import arrowIcon from '../../icons/arrow.svg';
+import LargeButton from '../Partials/LargeButton';
 
 function News() {
   return (
@@ -88,7 +89,7 @@ function News() {
         </article>
       </div>
 
-      <a className="button-title" href="#">Visos naujienos <img src={arrowIcon} alt="arrow" /></a>
+      <LargeButton text="Visos naujienos" url="./#" />
     </section>
   )
 }

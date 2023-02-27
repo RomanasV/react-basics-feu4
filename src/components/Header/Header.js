@@ -17,11 +17,11 @@ export default function Header() {
               <li className="menu-item"><a className="menu-link" href="#">Studentams</a></li>
               <li className="menu-item"><a className="menu-link" href="#">Verslui</a></li>
               <li className="menu-item">
-                <Link className="menu-link" to="/programs">Programos</Link>
+                <Link className="menu-link" to="/codeacademy/programs">Programos</Link>
               </li>
               <li className="menu-item"><a className="menu-link" href="#">Apie mus</a></li>
               <li className="menu-item">
-                <Link className="menu-link" to="/news">Naujienos</Link>
+                <Link className="menu-link" to="/codeacademy/news">Naujienos</Link>
               </li>
               <li className="menu-item"><a className="menu-link" href="#">IT testaas</a></li>
               <li className="menu-item"><a className="menu-link" href="#">Kontaktai</a></li>
