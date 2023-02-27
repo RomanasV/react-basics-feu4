@@ -8,6 +8,10 @@ export default function Events({ events, sectionTitle, moreButton }) {
 
   // let { events, sectionTitle } = props;
 
+  if (events.length === 0) {
+    return;
+  }
+
   const eventElements = events.map((event, index) => <EventItem event={event} key={index} /> );
 
   return (

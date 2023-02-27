@@ -6,12 +6,21 @@ import Events from '../../components/Events/Events';
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Container from '../../components/Container/Container';
-import { eventsData } from '../../projectData';
+import { eventsData, podcastsData } from '../../projectData';
 
 function NewsPage() {
   const pageTitle = 'Naujienos';
 
-  const podcastsData = [];
+  let sidebar;
+
+  if (podcastsData.podcasts.length > 0 || eventsData.events.length > 0) {
+    sidebar = (
+      <aside className="sidebar-content">
+        {podcastsData.podcasts.length > 0 && <PodcastsList podcasts={podcastsData.podcasts} sectionTitle={podcastsData.sectionTitle} />}
+        <Events events={eventsData.events} sectionTitle={eventsData.sectionTitle} moreButton={eventsData.moreButton} />
+      </aside>
+    )
+  }
 
   return (
     <>
@@ -24,10 +33,8 @@ function NewsPage() {
             <Video />
           </main>
 
-          <aside className="sidebar-content">
-            <PodcastsList />
-            <Events events={eventsData.events} sectionTitle={eventsData.sectionTitle} moreButton={eventsData.moreButton} />
-          </aside>
+          {sidebar}
+
         </div>
       </Container>
       <Footer />
