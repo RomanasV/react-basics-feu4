@@ -1,11 +1,11 @@
 import './Container.css'; 
 
-function Container(props) {
-  // let classes = 'container ' + props.className;
-  let classes = `container ${props.className}`;
+function Container({ className, children }) {
+  // let classes = 'container ' + className;
+  let classes = `container ${className ? className : ''}`;
 
   return (
-    <div className={classes}>{props.children}</div>
+    <div className={classes}>{children}</div>
   )
 }
 

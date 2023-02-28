@@ -13,10 +13,10 @@ const CounterPage = () => {
   return (
     <Container>
       <h1 className={classes}>{count}</h1>
-      <button onClick={() => counterHandler(2)} disabled={count > 8 ? true : null}>+2</button>
-      <button onClick={() => counterHandler(1)} disabled={count > 9 ? true : null}>+1</button>
-      <button onClick={() => counterHandler(-1)} disabled={count < 2 ? true : null}>-1</button>
-      <button onClick={() => counterHandler(-2)} disabled={count < 3 ? true : null}>-2</button>
+      <button onClick={() => counterHandler(2)} disabled={count > 8}>+2</button>
+      <button onClick={() => counterHandler(1)} disabled={count > 9}>+1</button>
+      <button onClick={() => counterHandler(-1)} disabled={count < 2}>-1</button>
+      <button onClick={() => counterHandler(-2)} disabled={count < 3}>-2</button>
       <button onClick={() => setCount(initialCount)}>Reset</button>
     </Container>
   )
