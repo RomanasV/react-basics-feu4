@@ -1,0 +1,10 @@
+1.1. Sukurti formą, kurioje galima įrašyti automobilio:
+    1.1. Brand'ą
+    1.2. Modelį
+    1.3. Variklio tipą (electric, diesel, petrol, hybrid)
+    1.4. Bazinę kainą
+    1.5. Kilometražą
+    1.6. Spalvą (juoda, raudona, mėlyna, sidabrinė, balta, 'special blue', 'other')
+        1.6.1. Jeigu pasirenkama spalva yra 'other', tai sukurti papildomą text tipo input elementą, kuriame reikia įrašyti spalvą.
+    1.7. Nuorodą į automobilio nuotrauką
+1.2. Formos submit metu, informaciją surinkti ir atvaizduoti automobilio HTML elementą ekrane.
