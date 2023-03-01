@@ -13,6 +13,7 @@ const CarsPage = () => {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [color, setColor] = useState(colors[0]);
   const [image, setImage] = useState('');
+  const [discount, setDiscount] = useState(0);
 
   const [car, setCar] = useState(null);
   
@@ -25,14 +26,6 @@ const CarsPage = () => {
 
     return elements;
   };
-
-  const getFinalPrice = (price) => {
-    return price + getVAT(price);
-  }
-
-  const getVAT = (price) => {
-    return price * 0.21;
-  }
 
   const getEnginePrice = () => {
     if (engine === 'electric') {
@@ -47,8 +40,54 @@ const CarsPage = () => {
       return 5000;
     }
 
-    return 0;;
+    return 0;
   }
+
+  const getColorPrice = () => {
+    if (color === 'special blue') {
+      return 500;
+    }
+
+    if (selectedColor === 'other') {
+      return 3000;
+    }
+
+    return 0; 
+  }
+
+  const getMileageDiscount = () => {
+    if (mileage > 400000) {
+      return basePrice * 0.5;
+    }
+
+    if (mileage > 100000) {
+      return basePrice * 0.3;
+    }
+
+    if (mileage > 50000) {
+      return basePrice * 0.2;
+    }
+
+    if (mileage > 20000) {
+      return basePrice * 0.15;
+    }
+
+    if (mileage > 0) {
+      return basePrice * 0.1;
+    }
+
+    return 0;
+  }
+
+  const getManualDiscount = () => {
+    return basePrice / 100 * discount;
+  }
+
+  const getAllPrice = () => car.price.basePrice + car.price.enginePrice + car.price.colorPrice;
+  const getAllDiscount = () => car.price.mileageDiscount + car.price.manualDiscount;
+  const getTotalPrice = () => getAllPrice() - getAllDiscount();
+  const getVAT = () => getTotalPrice() * 0.21;
+  const getFinalPrice = () => getTotalPrice() + getVAT();
 
   const formSubmitHandler = (event) => {
     event.preventDefault();
@@ -80,9 +119,13 @@ const CarsPage = () => {
       image,
       engine,
       mileage,
+      discount,
       price: {
         basePrice,
         enginePrice: getEnginePrice(),
+        colorPrice: getColorPrice(),
+        mileageDiscount: getMileageDiscount(),
+        manualDiscount: getManualDiscount(),
         vat: getVAT(basePrice),
         finalPrice: getFinalPrice(basePrice),
       }
@@ -106,6 +149,7 @@ const CarsPage = () => {
   
   const otherColorHandler = event => setColor(event.target.value);
   const imageHandler = event => setImage(event.target.value);
+  const discountHandler = event => setDiscount(Number(event.target.value));
 
   return (
     <Container>
@@ -207,6 +251,22 @@ const CarsPage = () => {
               />
           </div>
         
+
+          <div className="form-control">
+            <label htmlFor="car-discount">Discount:</label>
+            <input 
+              type="number" 
+              id="car-discount" 
+              name="discount" 
+              placeholder="Enter a discount" 
+              min="0" 
+              step="0.1"
+              max="100"
+              value={discount}
+              onChange={discountHandler} 
+              />
+          </div>
+
         {brand && model && engine && basePrice && mileage && color && image && <button type="submit">Submit</button>}
       </form>
 
@@ -223,17 +283,26 @@ const CarsPage = () => {
 
           <h3>Price:</h3>
           <ul>
-            <li>Base Price: {car.price.basePrice}</li>
-            <li>Engine Price: {car.price.enginePrice}</li>
+            <li>Base Price: {car.price.basePrice}€</li>
+            <li>Engine Price: {car.price.enginePrice}€</li>
+            <li>Color Price: {car.price.colorPrice}€</li>
+            <li><strong>Price: {getAllPrice()}€</strong></li>
           </ul>
 
           <h3>Discounts:</h3>
           <ul>
-            <li>Mileage: </li>
-            <li>Discount: </li>
+            <li>Mileage: {car.price.mileageDiscount}€</li>
+            <li>Manual Discount: {car.price.manualDiscount}€</li>
+            <li><strong>Discount: {getAllDiscount()}€</strong></li>
+          </ul>
+          
+          <h3>Total price:</h3>
+          <ul>
+            <li>Price: {getTotalPrice()}€</li>
+            <li>VAT: {getVAT()}€</li>
+            <li><strong>Final Price: {getFinalPrice()}€ VAT included</strong></li>
           </ul>
 
-          <h5>{getFinalPrice(car.price.basePrice)}€ su PVM</h5>
         </div>
       )}
     </Container>
