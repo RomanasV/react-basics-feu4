@@ -11,32 +11,10 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 2. Automobilio HTML elemente, papildomai pridėti kainą už papildomas paslaugas ir galutinę kainą pagal šiuos kriterijus:
-    2.1. Jei variklis 'electric' prie bazinės kainos pridėti 10,000€. 
-    2.2. Jei variklis 'hybrid' prie bazinės kainos pridėti 7,500€.
-    2.3. Jei variklis 'diesel' prie bazinės kainos pridėti 5,000€.
+    2.1. Jei variklis 'electric' prie bazinės kainos pridėti 10000€. 
+    2.2. Jei variklis 'hybrid' prie bazinės kainos pridėti 7500€.
+    2.3. Jei variklis 'diesel' prie bazinės kainos pridėti 5000€.
     2.4. Jei variklis 'petrol' prie bazinės kainos prideti nereikia nieko.
 
 3. Pridėti nuolaidą kainai už automobilio kilometražą:
@@ -59,13 +37,15 @@ Automobilio kaina:
 2. Papildomos paslaugos:
 2.1. Variklio tipas.
 2.2. Spalva.
-2.3. Viso už papildomas paslaugas.
+2.3. Viso už papildomas paslaugas (variklio tipo kaina + spalvos kaina)
 
 3. Kainos sumažėjimas:
 3.1. Dėl kilometražo.
 3.2. Nuolaida.
-3.3. Viso kainos sumažėjimas.
+3.3. Viso kainos sumažėjimas (kilometražo nuolaida + nuolaida)
 
-4. Galutinė kaina.
+4. Galutinė kaina (Bazinė kaina + papildomos paslaugos - nuolaidos)
+
 5. PVM.
+
 6. Galutinė kaina su PVM.

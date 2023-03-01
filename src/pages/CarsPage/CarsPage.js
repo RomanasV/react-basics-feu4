@@ -26,6 +26,30 @@ const CarsPage = () => {
     return elements;
   };
 
+  const getFinalPrice = (price) => {
+    return price + getVAT(price);
+  }
+
+  const getVAT = (price) => {
+    return price * 0.21;
+  }
+
+  const getEnginePrice = () => {
+    if (engine === 'electric') {
+      return 10000;
+    }
+
+    if (engine === 'hybrid') {
+      return 7500;
+    }
+
+    if (engine === 'diesel') {
+      return 5000;
+    }
+
+    return 0;;
+  }
+
   const formSubmitHandler = (event) => {
     event.preventDefault();
 
@@ -49,7 +73,20 @@ const CarsPage = () => {
 
     // setCar(newCar);
 
-    setCar({ brand, model, color, image, engine, basePrice, mileage });
+    setCar({ 
+      brand,
+      model,
+      color,
+      image,
+      engine,
+      mileage,
+      price: {
+        basePrice,
+        enginePrice: getEnginePrice(),
+        vat: getVAT(basePrice),
+        finalPrice: getFinalPrice(basePrice),
+      }
+    });
   }
 
   const brandInputHandler = event => setBrand(event.target.value);
@@ -182,8 +219,21 @@ const CarsPage = () => {
             <li>Color: {car.color}</li>
             <li>Engine type: {car.engine}</li>
             <li>Mileage: {car.mileage}</li>
-            <li>Base price: {car.basePrice}</li>
           </ul>
+
+          <h3>Price:</h3>
+          <ul>
+            <li>Base Price: {car.price.basePrice}</li>
+            <li>Engine Price: {car.price.enginePrice}</li>
+          </ul>
+
+          <h3>Discounts:</h3>
+          <ul>
+            <li>Mileage: </li>
+            <li>Discount: </li>
+          </ul>
+
+          <h5>{getFinalPrice(car.price.basePrice)}€ su PVM</h5>
         </div>
       )}
     </Container>
