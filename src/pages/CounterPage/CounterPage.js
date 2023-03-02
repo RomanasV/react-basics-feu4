@@ -6,13 +6,23 @@ const CounterPage = () => {
   const initialCount = 5;
   const [count, setCount] = useState(initialCount);
   const [grades, setGrades] = useState([]);
+  const [name, setName] = useState('');
 
   const counterHandler = num => setCount(prevState => prevState + num);
   const counterInputHandler = event => setCount(Number(event.target.value));
   const addGradeHandler = () => {
-    setGrades(prevState => [count, ...prevState]);
+    const gradeData = {
+      id: Math.random(),
+      name,
+      number: count,
+    }
+
+    setGrades(prevState => [gradeData, ...prevState]);
     setCount(initialCount);
+    setName('');
   }
+
+  const deleteGradeHandler = (id) => setGrades(prevState => prevState.filter(grade => grade.id !== id));
 
   let classes = count > 4 ? 'color-green' : 'color-red';
 
@@ -25,13 +35,17 @@ const CounterPage = () => {
       <button onClick={() => counterHandler(-1)} disabled={count < 2}>-1</button>
       <button onClick={() => counterHandler(-2)} disabled={count < 3}>-2</button>
       <button onClick={() => setCount(initialCount)}>Reset</button>
+      <input type="text" value={name} onChange={(event) => setName(event.target.value)} />
       <button onClick={addGradeHandler}>Add Grade</button>
 
-      {grades && grades.length > 0 && (
-        <ul>
-          {grades.map((grade, index) => <li key={index}>{grade} <button>Remove</button></li>)}
-        </ul>
-      )}
+      {grades && grades.length > 0 ? (
+        <>
+          <h3>Grades list:</h3>
+          <ul>
+            {grades.map(grade => <li key={grade.id}>{grade.number} {grade.name && `(${grade.name})`}<button onClick={() => deleteGradeHandler(grade.id)}>Remove</button></li>)}
+          </ul>
+        </>
+      ) : <h3>No grades :(</h3>}
     </Container>
   )
 }
