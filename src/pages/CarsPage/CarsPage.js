@@ -5,14 +5,75 @@ const CarsPage = () => {
   const engineTypes = ['petrol', 'diesel', 'hybrid', 'electric'];
   const colors = ['black', 'red', 'blue', 'silver', 'white', 'special blue', 'other'];
 
-  const [brand, setBrand] = useState('');
-  const [model, setModel] = useState('');
+  const carsData = [
+    {
+      brand: 'Brandas',
+      model: 'Modelis',
+      color: 'black',
+      image: 'https://i.pinimg.com/originals/73/ee/a0/73eea0f3f5402177fafdb1145039cce3.jpg',
+      engine: 'diesel',
+      mileage: 5000,
+      discount: 10,
+      price: {
+        basePrice: 10000,
+        enginePrice: 0,
+        colorPrice: 3000,
+        mileageDiscount: 10,
+        manualDiscount: 0,
+        vat: 1000,
+        finalPrice: 100000,
+      }
+    },
+    {
+      brand: 'Brandas 2',
+      model: 'Modelis 2',
+      color: 'black',
+      image: 'https://i.pinimg.com/originals/73/ee/a0/73eea0f3f5402177fafdb1145039cce3.jpg',
+      engine: 'diesel',
+      mileage: 5000,
+      discount: 10,
+      price: {
+        basePrice: 10000,
+        enginePrice: 0,
+        colorPrice: 3000,
+        mileageDiscount: 10,
+        manualDiscount: 0,
+        vat: 1000,
+        finalPrice: 100000,
+      }
+    }
+  ];
+
+  let newCar = {
+    brand: 'Brandas 3',
+    model: 'Modelis 3',
+    color: 'black',
+    image: 'https://i.pinimg.com/originals/73/ee/a0/73eea0f3f5402177fafdb1145039cce3.jpg',
+    engine: 'diesel',
+    mileage: 5000,
+    discount: 10,
+    price: {
+      basePrice: 10000,
+      enginePrice: 0,
+      colorPrice: 3000,
+      mileageDiscount: 10,
+      manualDiscount: 0,
+      vat: 1000,
+      finalPrice: 100000,
+    }
+  }
+
+  const initialCars = [...carsData, newCar];
+
+  const [cars, setCars] = useState(initialCars);
+  const [brand, setBrand] = useState('Brandas');
+  const [model, setModel] = useState('Modelis');
   const [engine, setEngine] = useState(engineTypes[0]);
   const [basePrice, setBasePrice] = useState(1000);
-  const [mileage, setMileage] = useState(0);
+  const [mileage, setMileage] = useState(500);
   const [selectedColor, setSelectedColor] = useState(colors[0]);
   const [color, setColor] = useState(colors[0]);
-  const [image, setImage] = useState('');
+  const [image, setImage] = useState('https://i.pinimg.com/originals/73/ee/a0/73eea0f3f5402177fafdb1145039cce3.jpg');
   const [discount, setDiscount] = useState(0);
 
   const [car, setCar] = useState(null);
@@ -112,7 +173,26 @@ const CarsPage = () => {
 
     // setCar(newCar);
 
-    setCar({ 
+    // setCar({ 
+    //   brand,
+    //   model,
+    //   color,
+    //   image,
+    //   engine,
+    //   mileage,
+    //   discount,
+    //   price: {
+    //     basePrice,
+    //     enginePrice: getEnginePrice(),
+    //     colorPrice: getColorPrice(),
+    //     mileageDiscount: getMileageDiscount(),
+    //     manualDiscount: getManualDiscount(),
+    //     vat: getVAT(),
+    //     finalPrice: getFinalPrice(),
+    //   }
+    // });
+
+    const newCar = { 
       brand,
       model,
       color,
@@ -122,17 +202,26 @@ const CarsPage = () => {
       discount,
       price: {
         basePrice,
-        enginePrice: getEnginePrice(),
-        colorPrice: getColorPrice(),
-        mileageDiscount: getMileageDiscount(),
-        manualDiscount: getManualDiscount(),
-        vat: getVAT(basePrice),
-        finalPrice: getFinalPrice(basePrice),
+        enginePrice: 0,
+        colorPrice: 3000,
+        mileageDiscount: 10,
+        manualDiscount: 0,
+        vat: 1000,
+        finalPrice: 100000,
       }
-    });
+    }
+
+    // setCars((prevState) => {
+    //   let newState = [...prevState, newCar];
+    //   return newState
+    // })
+
+    setCars(prevState => [newCar, ...prevState]);
   }
 
-  const brandInputHandler = event => setBrand(event.target.value);
+  const brandInputHandler = event => {
+    setBrand(event.target.value)
+  };
   const modelInputHandler = event => setModel(event.target.value);
   const engineSelectHandler = event => setEngine(event.target.value);
   const basePriceHandler = event => setBasePrice(Number(event.target.value));
@@ -305,6 +394,43 @@ const CarsPage = () => {
 
         </div>
       )}
+
+
+      {cars && cars.length > 0 && cars.map((car, index) => (
+        <div key={index} className='car-item'>
+          <h2 className='car-name'>{car.brand} {car.model}</h2>
+          <img src={car.image} alt={`${car.brand} ${car.model}`} />
+          <h3>Car's info:</h3>
+          <ul>
+            <li>Color: {car.color}</li>
+            <li>Engine type: {car.engine}</li>
+            <li>Mileage: {car.mileage}</li>
+          </ul>
+
+          <h3>Price:</h3>
+          <ul>
+            <li>Base Price: {car.price.basePrice}€</li>
+            <li>Engine Price: {car.price.enginePrice}€</li>
+            <li>Color Price: {car.price.colorPrice}€</li>
+            {/* <li><strong>Price: {getAllPrice()}€</strong></li> */}
+          </ul>
+
+          <h3>Discounts:</h3>
+          <ul>
+            <li>Mileage: {car.price.mileageDiscount}€</li>
+            <li>Manual Discount: {car.price.manualDiscount}€</li>
+            {/* <li><strong>Discount: {getAllDiscount()}€</strong></li> */}
+          </ul>
+          
+          <h3>Total price:</h3>
+          <ul>
+            {/* <li>Price: {getTotalPrice()}€</li> */}
+            {/* <li>VAT: {getVAT()}€</li> */}
+            {/* <li><strong>Final Price: {getFinalPrice()}€ VAT included</strong></li> */}
+          </ul>
+
+        </div>
+      ))}
     </Container>
   )
 }
