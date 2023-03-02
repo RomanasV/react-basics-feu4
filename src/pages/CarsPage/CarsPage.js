@@ -144,8 +144,8 @@ const CarsPage = () => {
     return basePrice / 100 * discount;
   }
 
-  const getAllPrice = () => car.price.basePrice + car.price.enginePrice + car.price.colorPrice;
-  const getAllDiscount = () => car.price.mileageDiscount + car.price.manualDiscount;
+  const getAllPrice = () => basePrice + getEnginePrice() + getColorPrice();
+  const getAllDiscount = () => getMileageDiscount() + getManualDiscount();
   const getTotalPrice = () => getAllPrice() - getAllDiscount();
   const getVAT = () => getTotalPrice() * 0.21;
   const getFinalPrice = () => getTotalPrice() + getVAT();
@@ -202,12 +202,12 @@ const CarsPage = () => {
       discount,
       price: {
         basePrice,
-        enginePrice: 0,
-        colorPrice: 3000,
-        mileageDiscount: 10,
-        manualDiscount: 0,
-        vat: 1000,
-        finalPrice: 100000,
+        enginePrice: getEnginePrice(),
+        colorPrice: getColorPrice(),
+        mileageDiscount: getMileageDiscount(),
+        manualDiscount: getManualDiscount(),
+        vat: getVAT(),
+        finalPrice: getFinalPrice(),
       }
     }
 
