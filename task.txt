@@ -49,3 +49,13 @@ Automobilio kaina:
 5. PVM.
 
 6. Galutinė kaina su PVM.
+
+
+
+1. Naudojant react-router-dom sukurti du routes (puslapius): Shopping List.
+
+2. ShoppingList komponente sukurti masyvą su penkių pirkinių sąrašu. Kiekvienas pirkinys turi būti objektas ir turėti properties: 
+2.1 title (string tipo)
+2.2. done (boolean tipo)
+3.1. Jeigu pirkinių masyvas neturi nei vieno nario, tai į ekrane parašyti: „Your shopping list is empty."
+3.2. Jeigu pirkinių masyve yra bent vienas narys, tai kiekvieną nario title property išvesti į ekraną panaudojant ShoppingItem komponentą jam paduodant informaciją per props.
