@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Container from '../../components/Container/Container';
-import TodoItem from './TodoItem';
+import TodoForm from './TodoForm';
+import TodoList from './TodoList';
 
 import './TodoPage.css';
 
@@ -48,23 +49,16 @@ const TodoPage = () => {
 
   return (
     <Container>
-      <form onSubmit={newTaskHandler}>
-        <div className='form-control'>
-          <label htmlFor='task'>Task:</label>
-          <input type='text' id='task' value={taskInput} onChange={inputTaskHandler} />
-        </div>
+      <TodoForm 
+        onNewTodo={newTaskHandler}
+        onInputChange={inputTaskHandler}
+        onDescriptionChange={descriptionInputHandler}
+        title={taskInput}
+        description={descriptionInput}
+      />
+      
+      <TodoList data={tasks} onDeleteTask={removeTaskHandler} onTaskDone={taskDoneHandler} />
 
-        <div className='form-control'>
-          <label htmlFor='description'>Task Description:</label>
-          <textarea id='description' rows="5" value={descriptionInput} onChange={descriptionInputHandler}></textarea>
-        </div>
-
-        <input type='submit' value='Add new task' />
-      </form>
-
-      <ul>
-        {tasks.map(task => <TodoItem key={task.id} data={task} onDeleteTast={removeTaskHandler} onTaskDone={taskDoneHandler} />)}
-      </ul>
     </Container>
   )
 }
