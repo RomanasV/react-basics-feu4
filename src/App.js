@@ -7,6 +7,7 @@ import CarsPage from './pages/CarsPage/CarsPage';
 import './App.css';
 import ShoppingList from './pages/ShoppingList/ShoppingList';
 import TodoPage from './pages/TodoPage/TodoPage';
+import StudentsPage from './pages/StudentsPage/StudentsPage';
 
 function App() {
   return (
@@ -32,6 +33,9 @@ function App() {
             <li>
               <Link to='/other-projects/todo'>Todo</Link>
             </li>
+            <li>
+              <Link to='/other-projects/students'>Students</Link>
+            </li>
           </ul>
         } />
         <Route path='/codeacademy' element={<MainPage />} />
@@ -41,6 +45,7 @@ function App() {
         <Route path='/other-projects/cars' element={<CarsPage />} />
         <Route path='/other-projects/shopping-list' element={<ShoppingList />} />
         <Route path='/other-projects/todo' element={<TodoPage />} />
+        <Route path='/other-projects/students' element={<StudentsPage /> } />
         <Route path='/other-projects/contacts' element={<h1>Contacts</h1>} />
         <Route path='*' element={
           <div>
