@@ -1,19 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-const TodoForm = ({ onNewTodo, onInputChange, onDescriptionChange, title, description }) => {
+const TodoForm = ({ onNewTodo }) => {
+  const [task, setTask] = useState('');
+  const [description, setDescription] = useState('');
+
+  const inputTaskHandler = event => setTask(event.target.value);
+  const descriptionInputHandler = event => setDescription(event.target.value);
+
+  const newTaskHandler = event => {
+    event.preventDefault();
+  
+    const newTask = {
+      id: Math.random(),
+      title: task,
+      description: description,
+      date: new Date().toISOString(),
+      done: false
+    }
+
+    onNewTodo(newTask);
+
+    setTask('');
+    setDescription('');
+  }
+
   return (
-    <form onSubmit={onNewTodo}>
+    <form onSubmit={newTaskHandler}>
       <div className='form-control'>
         <label htmlFor='task'>Task:</label>
-        <input type='text' id='task' value={title} onChange={onInputChange} />
+        <input type='text' id='task' value={task} onChange={inputTaskHandler} />
       </div>
 
       <div className='form-control'>
         <label htmlFor='description'>Task Description:</label>
-        <textarea id='description' rows="5" value={description} onChange={onDescriptionChange}></textarea>
+        <textarea id='description' rows="5" value={description} onChange={descriptionInputHandler}></textarea>
       </div>
 
-      <input type='submit' value='Add new task' />
+      {task && description && <input type='submit' value='Add new task' />}
     </form>
   )
 }
