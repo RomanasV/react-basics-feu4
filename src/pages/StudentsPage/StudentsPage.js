@@ -64,9 +64,21 @@ const StudentsPage = () => {
       interests: ['JavaScript', 'PHP'],
     },
   ]);
+  const [formData, setFormData] = useState({
+    id: null,
+    name: '',
+    surname: '',
+    age: '',
+    phone: '',
+    email: '',
+    itKnowledge: '5',
+    group: 'feu 3',
+    interests: ['JavaScript', 'PHP', 'C'],
+  });
+
   
-  const [name, setName] = useState('John');
-  const [surname, setSurname] = useState('Doe');
+  // const [name, setName] = useState('John');
+  // const [surname, setSurname] = useState('Doe');
   // const [age, setAge] = useState(30);
   // const [phone, setPhone] = useState('+37045646546');
 
@@ -75,36 +87,25 @@ const StudentsPage = () => {
   // const ageHandler = event => setAge(event.target.value);
   // const phoneHandler = event => setPhone(event.target.value);
 
-  const [formData, setFormData] = useState({
-    id: null,
-    name: 'John',
-    surname: 'Doe',
-    age: '50',
-    phone: '+3704646546',
-    email: 'studentas@info.com',
-    itKnowledge: '5',
-    group: 'feu 3',
-    interests: ['JavaScript', 'PHP', 'C'],
-  });
 
-  const nameHandler = event => {
-    setFormData(prevState => {
-      // const updatedData = {...prevState, name: event.target.value};
-      // return updatedData;
+  // const nameHandler = event => {
+  //   setFormData(prevState => {
+  //     // const updatedData = {...prevState, name: event.target.value};
+  //     // return updatedData;
 
-      const updatedData = {...prevState};
-      updatedData.name = event.target.value;
-      return updatedData;
-    });
-  };
+  //     const updatedData = {...prevState};
+  //     updatedData.name = event.target.value;
+  //     return updatedData;
+  //   });
+  // };
 
-  const surnameHandler = event => {
-    setFormData(prevState => {
-      const updatedData = {...prevState};
-      updatedData.surname = event.target.value;
-      return updatedData;
-    });
-  };
+  // const surnameHandler = event => {
+  //   setFormData(prevState => {
+  //     const updatedData = {...prevState};
+  //     updatedData.surname = event.target.value;
+  //     return updatedData;
+  //   });
+  // };
 
   const formInputHandler = event => {
     setFormData(prevState => {
@@ -131,34 +132,20 @@ const StudentsPage = () => {
 
   const createStudentHandler = (event) => {
     event.preventDefault();
-
-    // const interestInputs = [...event.target.interest];
-    // const selectedInputs = interestInputs.filter(interest => interest.checked);
-    // const studentInterests = selectedInputs.map(interest => interest.value);
-
-    // const studentInterests = [...event.target.interest].filter(interest => interest.checked).map(interest => interest.value);
-
-    // const studentDataObj = {
-    //   id: uuid(),
-    //   name: name,
-    //   surname: surname,
-    //   age: event.target.age.value,
-    //   phone: event.target.phone.value,
-    //   email: event.target.email.value,
-    //   itKnowledge: event.target['it-knowledge'].value,
-    //   group: event.target.group.value,
-    //   interests: studentInterests,
-    // }
-
     setStudentsList(prevState => [{...formData, id: uuid()}, ...prevState]);
-  }
 
-  // const removeStudentHandler = id => {
-  //   setStudentsList(prevState => {
-  //     const updatedStudentList = prevState.filter(student => student.id !== id);
-  //     return updatedStudentList;
-  //   });
-  // }
+    setFormData({
+      id: null,
+      name: '',
+      surname: '',
+      age: '',
+      phone: '',
+      email: 'studentas@info.com',
+      itKnowledge: '5',
+      group: 'feu 3',
+      interests: ['JavaScript', 'PHP', 'C'],
+    });
+  }
 
   const removeStudentHandler = id => setStudentsList(prevState => prevState.filter(student => student.id !== id));
   
@@ -256,28 +243,6 @@ const StudentsPage = () => {
               <label htmlFor={`group-${index}`}>{group.toUpperCase()}gr.</label>
             </div>
           ))}
-          
-
-
-          {/* <div className="form-control">
-            <input type="radio" name="group" id="group-2" value="feu 2" onChange={formInputHandler} />
-            <label htmlFor="group-2">FEU 2gr.</label>
-          </div>
-
-          <div className="form-control">
-            <input type="radio" name="group" id="group-3" value="feu 3" onChange={formInputHandler} />
-            <label htmlFor="group-3">FEU 3gr.</label>
-          </div>
-
-          <div className="form-control">
-            <input type="radio" name="group" id="group-4" value="feu 4" onChange={formInputHandler} />
-            <label htmlFor="group-4">FEU 4gr.</label>
-          </div>
-
-          <div className="form-control">
-            <input type="radio" name="group" id="group-5" value="feu 5" onChange={formInputHandler} />
-            <label htmlFor="group-5">FEU 5gr.</label>
-          </div> */}
         </fieldset>
 
         <fieldset>
@@ -296,38 +261,6 @@ const StudentsPage = () => {
               <label htmlFor={`interest-${index}`}>{interest}</label>
             </div>
           ))}
-
-          {/* <div className="form-control">
-            <input 
-              type="checkbox" 
-              name="interest" 
-              id="interest-2" 
-              value="PHP"
-              checked={formData.interests.includes("PHP")}
-            />
-            <label htmlFor="interest-2">PHP</label>
-          </div>
-
-          <div className="form-control">
-            <input 
-              type="checkbox" 
-              name="interest" 
-              id="interest-3" 
-              value="C"
-              checked={formData.interests.includes("C")}
-            />
-            <label htmlFor="interest-3">C</label>
-          </div>
-
-          <div className="form-control">
-            <input type="checkbox" name="interest" id="interest-4" value="Python" />
-            <label htmlFor="interest-4">Python</label>
-          </div>
-
-          <div className="form-control">
-            <input type="checkbox" name="interest" id="interest-5" value="Node.js" />
-            <label htmlFor="interest-5">Node.js</label>
-          </div> */}
         </fieldset>
 
         <input type="submit" id="form-submit" value="Create Student" />
