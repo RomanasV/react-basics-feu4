@@ -1,10 +1,12 @@
-import React, { useState } from 'react'
-import Container from '../../components/Container/Container'
-import StudentItem from './StudentItem';
+import React, { useState } from 'react';
+import { v4 as uuid } from 'uuid';
+import Container from '../../components/Container/Container';
+import StudentItem from '../../components/StudentItem/StudentItem';
 
 const StudentsPage = () => {
   const [studentsList, setStudentsList] = useState([
     {
+      id: uuid(),
       name: 'Vardas 10',
       surname: 'Pavardė 1',
       age: 25,
@@ -15,6 +17,7 @@ const StudentsPage = () => {
       interests: ['JavaScript', 'PHP'],
     },
     {
+      id: uuid(),
       name: 'Vardas 2',
       surname: 'Pavardė 2',
       age: 32,
@@ -25,6 +28,7 @@ const StudentsPage = () => {
       interests: ['JavaScript'],
     },
     {
+      id: uuid(),
       name: 'Vardas 3',
       surname: 'Pavardė 3',
       age: 20,
@@ -35,6 +39,7 @@ const StudentsPage = () => {
       interests: ['PHP'],
     },
     {
+      id: uuid(),
       name: 'Vardas 5',
       surname: 'Pavardė 5',
       age: 40,
@@ -45,6 +50,7 @@ const StudentsPage = () => {
       interests: [],
     },
     {
+      id: uuid(),
       name: 'Vardas 5',
       surname: 'Pavardė 5',
       age: 25,
@@ -74,6 +80,15 @@ const StudentsPage = () => {
 
     console.log(studentDataObj);
   }
+
+  // const removeStudentHandler = id => {
+  //   setStudentsList(prevState => {
+  //     const updatedStudentList = prevState.filter(student => student.id !== id);
+  //     return updatedStudentList;
+  //   });
+  // }
+
+  const removeStudentHandler = id => setStudentsList(prevState => prevState.filter(student => student.id !== id));
   
   return (
     <Container>
@@ -170,7 +185,7 @@ const StudentsPage = () => {
         <input type="submit" id="form-submit" value="Create Student" />
       </form>
 
-      {studentsList && studentsList.length > 0 && studentsList.map(student => <StudentItem name={student.name} />)}
+      {studentsList && studentsList.length > 0 && studentsList.map(student => <StudentItem onRemoveStudent={removeStudentHandler} key={student.id} {...student} />)}
 
     </Container>
   )
