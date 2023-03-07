@@ -4,7 +4,6 @@ const StudentItem = (props) => {
   const [showPrivateInfo, setShowPrivateInfo] = useState(false);
   let { name, surname, age, phone, email, itKnowledge, group, interests, id, onRemoveStudent } = props;
 
-  console.log(id)
   if (!name && !surname) {
     return;
   }

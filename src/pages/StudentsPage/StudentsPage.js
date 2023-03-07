@@ -62,12 +62,20 @@ const StudentsPage = () => {
     },
   ]);
 
+
   const createStudentHandler = (event) => {
     event.preventDefault();
-    console.log(event.target.age.value);
-    console.log(event.target.name.value);
 
-    let studentDataObj = {
+    console.log(event.target.interest)
+
+    // const interestInputs = [...event.target.interest];
+    // const selectedInputs = interestInputs.filter(interest => interest.checked);
+    // const studentInterests = selectedInputs.map(interest => interest.value);
+
+    const studentInterests = [...event.target.interest].filter(interest => interest.checked).map(interest => interest.value);
+
+    const studentDataObj = {
+      id: uuid(),
       name: event.target.name.value,
       surname: event.target.surname.value,
       age: event.target.age.value,
@@ -75,10 +83,10 @@ const StudentsPage = () => {
       email: event.target.email.value,
       itKnowledge: event.target['it-knowledge'].value,
       group: event.target.group.value,
-      // interests: studentInterests,
+      interests: studentInterests,
     }
 
-    console.log(studentDataObj);
+    setStudentsList(prevState => [studentDataObj, ...prevState]);
   }
 
   // const removeStudentHandler = id => {
