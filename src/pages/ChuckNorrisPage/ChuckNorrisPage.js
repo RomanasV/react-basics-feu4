@@ -3,8 +3,24 @@ import Container from '../../components/Container/Container'
 
 const ChuckNorrisPage = () => {
   const [joke, setJoke] = useState('Loading...');
-  const [count, setCount] = useState(1);
-  const [count2, setCount2] = useState(1);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState(null);
+
+  useEffect(() => {
+    fetch('https://api.chucknorris.io/jokes/categories')
+      .then(res => res.json())
+      .then(categoriesData => {
+        setCategories(categoriesData);
+      })
+  }, []);
+
+  useEffect(() => {
+    fetch(`https://api.chucknorris.io/jokes/random?category=${selectedCategory}`)
+      .then(res => res.json())
+      .then(jokeData => {
+        setJoke(jokeData.value);
+      })
+  }, [selectedCategory])
 
   useEffect(() => {
     fetch('https://api.chucknorris.io/jokes/random')
@@ -12,14 +28,26 @@ const ChuckNorrisPage = () => {
       .then(jokeData => {
         setJoke(jokeData.value);
       })
-  }, [count]);
+  }, []);
+
+  const firstLetterUpperCase = word => word[0].toUpperCase() + word.slice(1);
+
+  const categoryJokeHandler = (event) => {
+    event.preventDefault();
+    setSelectedCategory(event.target.category.value);
+  }
 
   return (
     <Container>
-      <button onClick={() => setCount(prevState => prevState + 1)}>+1</button>
-      <button onClick={() => setCount2(prevState => prevState + 2)}>+2</button>
-      <h1>{count}</h1>
-      <h1>{count2}</h1>
+      {categories && categories.length > 0 && (
+        <form onSubmit={categoryJokeHandler}>
+          <select name='category'>
+            {categories.map((category, index) => <option key={index} value={category}>{firstLetterUpperCase(category)}</option>)}
+          </select>
+          <button>Get a Joke</button>
+        </form>
+      )}
+
       <p>{joke}</p>
     </Container>
   )
