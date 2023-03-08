@@ -8,36 +8,14 @@ import './App.css';
 import ShoppingList from './pages/ShoppingList/ShoppingList';
 import TodoPage from './pages/TodoPage/TodoPage';
 import StudentsPage from './pages/StudentsPage/StudentsPage';
+import MainNavigation from './components/MainNavigation/MainNavigation';
+import ChuckNorrisPage from './pages/ChuckNorrisPage/ChuckNorrisPage';
 
 function App() {
   return (
     <div className="App">
+      <MainNavigation />
       <Routes>
-        <Route path='/' element={
-          <ul>
-            <li>
-              <Link to='/codeacademy'>CodeAcademy Project</Link>
-            </li>
-            <li>
-              <Link to='/other-projects/contacts'>Contacts Project</Link>
-            </li>
-            <li>
-              <Link to='/other-projects/counter'>Counter</Link>
-            </li>
-            <li>
-              <Link to='/other-projects/cars'>Cars</Link>
-            </li>
-            <li>
-              <Link to='/other-projects/shopping-list'>Shopping List</Link>
-            </li>
-            <li>
-              <Link to='/other-projects/todo'>Todo</Link>
-            </li>
-            <li>
-              <Link to='/other-projects/students'>Students</Link>
-            </li>
-          </ul>
-        } />
         <Route path='/codeacademy' element={<MainPage />} />
         <Route path='/codeacademy/news' element={<NewsPage />} />
         <Route path='/codeacademy/programs' element={<ProgramsPage />} />
@@ -46,6 +24,7 @@ function App() {
         <Route path='/other-projects/shopping-list' element={<ShoppingList />} />
         <Route path='/other-projects/todo' element={<TodoPage />} />
         <Route path='/other-projects/students' element={<StudentsPage /> } />
+        <Route path='/other-projects/chuck-norris' element={<ChuckNorrisPage /> } />
         <Route path='/other-projects/contacts' element={<h1>Contacts</h1>} />
         <Route path='*' element={
           <div>
