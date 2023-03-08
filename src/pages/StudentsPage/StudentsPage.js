@@ -77,6 +77,9 @@ const StudentsPage = () => {
     },
   ]);
   const [formData, setFormData] = useState(formDefaults);
+  const [formErrorMessage, setFormErrorMessage] = useState('');
+  const [nameInputError, setNameInputError] = useState('');
+  const [surnameInputError, setSurnameInputError] = useState('');
   
   // const [name, setName] = useState('John');
   // const [surname, setSurname] = useState('Doe');
@@ -133,6 +136,33 @@ const StudentsPage = () => {
 
   const createStudentHandler = (event) => {
     event.preventDefault();
+
+    let formIsValid = true;
+    setNameInputError('')
+    setSurnameInputError('')
+    setFormErrorMessage('')
+
+    if (!formData.name) {
+      setNameInputError('Laukelis privalo būti užpildytas');
+      formIsValid = false;
+    } else if (formData.name.length < 3) {
+      setNameInputError('Vardas privalo turėti bent 2 simbolius');
+      formIsValid = false;
+    }
+    
+    if (!formData.surname) {
+      setSurnameInputError('Laukelis privalo būti užpildytas');
+      formIsValid = false;
+    } else if (formData.surname.length < 3) {
+      setSurnameInputError('Pavardė privalo turėti bent 2 simbolius');
+      formIsValid = false;
+    }
+
+    if (!formIsValid) {
+      setFormErrorMessage('Ne visi laukeliai yra užpildyti');
+      return;
+    }
+
     if (formData.id) {
       setStudentsList(prevState => {
         const updatedDate = [...prevState];
@@ -167,6 +197,7 @@ const StudentsPage = () => {
             onChange={formInputHandler} 
             required
           />
+          {nameInputError && <span>{nameInputError}</span>}
         </div>
 
         <div className="form-control">
@@ -179,6 +210,7 @@ const StudentsPage = () => {
             onChange={formInputHandler} 
             required
           />
+          {surnameInputError && <span>{surnameInputError}</span>}
         </div>
 
         <div className="form-control">
@@ -275,6 +307,7 @@ const StudentsPage = () => {
           value={formData.id ? 'Edit Student' : 'Create Student'} 
         />
       </form>
+      {formErrorMessage && <span>{formErrorMessage}</span>}
 
       {studentsList && studentsList.length > 0 && studentsList.map(student => (
         <StudentItem 
