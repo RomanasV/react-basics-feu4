@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const StudentItem = (props) => {
   const [showPrivateInfo, setShowPrivateInfo] = useState(false);
-  let { name, surname, age, phone, email, itKnowledge, group, interests, id, onRemoveStudent } = props;
+  let { name, surname, age, phone, email, itKnowledge, group, interests, id, onRemoveStudent, onEditStudent } = props;
 
   if (!name && !surname) {
     return;
@@ -33,7 +33,7 @@ const StudentItem = (props) => {
 
       <button onClick={personalInfoHandler}>{showPrivateInfo ? 'Hide Private Info' : 'Show Private Info'}</button>
       <button onClick={() => onRemoveStudent(id)}>Remove Student</button>
-      <button>Edit Student</button>
+      <button onClick={() => onEditStudent(id)}>Edit Student</button>
     </div>
   )
 }

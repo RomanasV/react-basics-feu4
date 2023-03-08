@@ -7,6 +7,18 @@ const StudentsPage = () => {
   const formGroups = ['feu 1', 'feu 2', 'feu 3', 'feu 4', 'feu 5', 'test 1'];
   const formInterests = ['JavaScript', 'PHP', 'Node.js', 'Python', 'C'];
 
+  const formDefaults = {
+    id: null,
+    name: '',
+    surname: '',
+    age: '',
+    phone: '',
+    email: '',
+    itKnowledge: '5',
+    group: 'feu 3',
+    interests: ['JavaScript', 'PHP', 'C'],
+  };
+
   const [studentsList, setStudentsList] = useState([
     {
       id: uuid(),
@@ -64,18 +76,7 @@ const StudentsPage = () => {
       interests: ['JavaScript', 'PHP'],
     },
   ]);
-  const [formData, setFormData] = useState({
-    id: null,
-    name: '',
-    surname: '',
-    age: '',
-    phone: '',
-    email: '',
-    itKnowledge: '5',
-    group: 'feu 3',
-    interests: ['JavaScript', 'PHP', 'C'],
-  });
-
+  const [formData, setFormData] = useState(formDefaults);
   
   // const [name, setName] = useState('John');
   // const [surname, setSurname] = useState('Doe');
@@ -132,22 +133,26 @@ const StudentsPage = () => {
 
   const createStudentHandler = (event) => {
     event.preventDefault();
-    setStudentsList(prevState => [{...formData, id: uuid()}, ...prevState]);
+    if (formData.id) {
+      setStudentsList(prevState => {
+        const updatedDate = [...prevState];
+        const editStudentIndex = updatedDate.findIndex(student => student.id === formData.id);
+        updatedDate.splice(editStudentIndex, 1, formData);
+        return updatedDate;
+      });
+    } else {
+      setStudentsList(prevState => [{...formData, id: uuid()}, ...prevState]);
+    }
 
-    setFormData({
-      id: null,
-      name: '',
-      surname: '',
-      age: '',
-      phone: '',
-      email: 'studentas@info.com',
-      itKnowledge: '5',
-      group: 'feu 3',
-      interests: ['JavaScript', 'PHP', 'C'],
-    });
+    setFormData(formDefaults);
   }
 
   const removeStudentHandler = id => setStudentsList(prevState => prevState.filter(student => student.id !== id));
+
+  const editStudentHandler = id => {
+    const editStudentData = studentsList.find(student => student.id === id);
+    setFormData(editStudentData);
+  }
   
   return (
     <Container>
@@ -239,6 +244,7 @@ const StudentsPage = () => {
                 id={`group-${index}`}
                 value={group}
                 onChange={formInputHandler}
+                checked={formData.group === group}
               />
               <label htmlFor={`group-${index}`}>{group.toUpperCase()}gr.</label>
             </div>
@@ -263,10 +269,21 @@ const StudentsPage = () => {
           ))}
         </fieldset>
 
-        <input type="submit" id="form-submit" value="Create Student" />
+        <input 
+          type="submit" 
+          id="form-submit" 
+          value={formData.id ? 'Edit Student' : 'Create Student'} 
+        />
       </form>
 
-      {studentsList && studentsList.length > 0 && studentsList.map(student => <StudentItem onRemoveStudent={removeStudentHandler} key={student.id} {...student} />)}
+      {studentsList && studentsList.length > 0 && studentsList.map(student => (
+        <StudentItem 
+          onEditStudent={editStudentHandler} 
+          onRemoveStudent={removeStudentHandler} 
+          key={student.id} 
+          {...student} 
+        />
+      ))}
 
     </Container>
   )
