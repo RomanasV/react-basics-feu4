@@ -15,14 +15,6 @@ const ChuckNorrisPage = () => {
       })
   }, []);
 
-  // useEffect(() => {
-  //   fetch(`https://api.chucknorris.io/jokes/random?category=${selectedCategory}`)
-  //     .then(res => res.json())
-  //     .then(jokeData => {
-  //       setJoke(jokeData.value);
-  //     })
-  // }, [selectedCategory])
-
   useEffect(() => {
     fetch('https://api.chucknorris.io/jokes/random')
       .then(res => res.json())

@@ -1,0 +1,39 @@
+.breeds-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.breed-item a {
+  text-transform: uppercase;
+  padding: 5px 15px;
+  cursor: pointer;
+  font-size: 14px;
+  display: inline-block;
+  text-decoration: none;
+  color: black;
+}
+
+.breed-item a:hover {
+  background-color: cadetblue;
+  color: white;
+}
+
+.breed-item a.active {
+  text-decoration: underline;
+  color: blue;
+}
+
+.breed-item a.active:hover {
+  color: white;
+}
+
+.images-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.images-list img {
+  max-width: 250px;
+  max-height: 250px;
+  object-fit: cover;
+}
