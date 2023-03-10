@@ -11,6 +11,7 @@ import StudentsPage from './pages/StudentsPage/StudentsPage';
 import MainNavigation from './components/MainNavigation/MainNavigation';
 import ChuckNorrisPage from './pages/ChuckNorrisPage/ChuckNorrisPage';
 import DogsPage from './pages/DogsPage/DogsPage';
+import ApiPage from './pages/ApiPage/ApiPage';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
         <Route path='/other-projects/chuck-norris' element={<ChuckNorrisPage /> } />
         <Route path='/other-projects/dogs/:breed' element={<DogsPage /> } />
         <Route path='/other-projects/dogs' element={<DogsPage /> } />
+        <Route path='/api' element={<ApiPage /> } />
         <Route path='/other-projects/contacts' element={<h1>Contacts</h1>} />
         <Route path='*' element={
           <div>

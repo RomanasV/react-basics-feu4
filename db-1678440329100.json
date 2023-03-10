@@ -1,0 +1,68 @@
+{
+  "groups": [
+    {
+      "id": 1,
+      "name": "FEU1",
+      "programId": 1,
+      "cityId": 1
+    },
+    {
+      "id": 2,
+      "name": "FEU2",
+      "programId": 1,
+      "cityId": 2
+    },
+    {
+      "id": 3,
+      "name": "FEU3",
+      "programId": 2,
+      "cityId": 1
+    },
+    {
+      "id": 4,
+      "name": "FEU4",
+      "programId": 2,
+      "cityId": 2
+    }
+  ],
+  "students": [
+    {
+      "id": 1,
+      "name": "John",
+      "surname": "Doe",
+      "groupId": 2
+    },
+    {
+      "id": 2,
+      "name": "Steve",
+      "surname": "Doe",
+      "groupId": 1
+    },
+    {
+      "id": 3,
+      "name": "Peter",
+      "surname": "Doe",
+      "groupId": 2
+    }
+  ],
+  "programs": [
+    {
+      "id": 1,
+      "title": "Front End"
+    },
+    {
+      "id": 2,
+      "title": "Back End"
+    }
+  ],
+  "cities": [
+    {
+      "id": 1,
+      "name": "Vilnius"
+    },
+    {
+      "id": 2,
+      "name": "Vilnius"
+    }
+  ]
+}

@@ -34,6 +34,9 @@ const MainNavigation = () => {
         <li>
           <NavLink to='/other-projects/dogs'>Dogs API</NavLink>
         </li>
+        <li>
+          <NavLink to='/api'>JSON API</NavLink>
+        </li>
       </ul>
     </Container>
   )

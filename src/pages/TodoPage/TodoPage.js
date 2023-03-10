@@ -3,7 +3,7 @@ import Container from '../../components/Container/Container';
 import TodoForm from './TodoForm';
 import TodoList from './TodoList';
 
-import './TodoPage.css';
+import './TodoPage.scss';
 
 const TodoPage = () => {
   const [tasks, setTasks] = useState([]);

@@ -1,8 +1,0 @@
-li {
-  cursor: pointer;
-}
-
-.done {
-  text-decoration: line-through;
-  color: rgba(0, 0, 0, 0.5);
-}
